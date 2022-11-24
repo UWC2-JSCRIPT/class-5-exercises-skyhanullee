@@ -1,17 +1,18 @@
 // If an li element is clicked, toggle the class "done" on the <li>
-
 const todayList = document.querySelector('.today-list');
 todayList.addEventListener('click', (e) => {
   // checks if li element
   if(e.target.tagName.toLowerCase() === 'li') {
     // adds "done" to li element
-    e.target.setAttribute('class', 'done');
+    // e.target.setAttribute('class', 'done');
+    e.target.classList.toggle('done');
     console.log(`list element is clicked: ${e.target.innerHTML}`);
   }
   // checks if span element
   else if(e.target.tagName.toLowerCase() === 'span') {
     // adds "done" to parent element (li)
-    e.target.parentNode.setAttribute('class', 'done');
+    // e.target.parentNode.setAttribute('class', 'done');
+    e.target.parentNode.classList.toggle('done');
     console.log(`span element is clicked.`)
   }
   // // checks if the parent node is li element
@@ -26,7 +27,7 @@ todayList.addEventListener('click', (e) => {
 // If a delete link is clicked, delete the li element / remove from the DOM
 todayList.addEventListener('click', (e) => {
   // checks if clicked element has class name "delete"
-  if(e.target.getElementsByClassName('delete')) {
+  if(e.target.classList.contains('delete')) {
     // removes list node
     todayList.removeChild(e.target.parentNode);
     console.log(`delete link was clicked.`);
@@ -43,21 +44,52 @@ const addListItem = function(e) {
   const text = input.value; // use this text to create a new <li>
   console.log(`addListItem was called.`);
   
-
-
+  // create li and span nodes
   const newListNode = document.createElement('li');
   const newSpan = document.createElement('span');
+
+  // set span text from input
   newSpan.textContent = text;
+
+  // append span into list node
   newListNode.appendChild(newSpan);
+  
+  // create delete node
   const deleteEl = document.createElement('a');
+  deleteEl.setAttribute('class', 'delete');
   deleteEl.textContent = 'Delete';
+
+  // append delete to list node
   newListNode.appendChild(deleteEl);
 
+  // append list node to the rest of the to do list
+  todayList.appendChild(newListNode);
+
+
+  // create delete node
+  const upEl = document.createElement('a');
+  upEl.setAttribute('class', 'up');
+  upEl.textContent = 'Up';
+
+  const downEl = document.createElement('a');
+  downEl.setAttribute('class', 'down');
+  downEl.textContent = 'Down';
+
+  // append delete to list node
+  newListNode.appendChild(upEl);
+  newListNode.appendChild(downEl);
+
+  // append list node to the rest of the to do list
+  todayList.appendChild(newListNode);
+
+  // clear input textbox
+  text = '';
 };
 
+// event listener for the add button
 const addButton = document.querySelector('.add-item');
-addButton.addEventListener('click', (e) => {
-  console.log(`add button clicked.`)
-  console.log(`input: ${e.previousElementSibling}`);
-  addListItem;
-})
+addButton.addEventListener('click', addListItem);
+
+
+// extra credit: move list nodes up and down
+
