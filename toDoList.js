@@ -4,24 +4,16 @@ todayList.addEventListener('click', (e) => {
   // checks if li element
   if(e.target.tagName.toLowerCase() === 'li') {
     // adds "done" to li element
-    // e.target.setAttribute('class', 'done');
     e.target.classList.toggle('done');
     console.log(`list element is clicked: ${e.target.innerHTML}`);
   }
   // checks if span element
   else if(e.target.tagName.toLowerCase() === 'span') {
     // adds "done" to parent element (li)
-    // e.target.parentNode.setAttribute('class', 'done');
     e.target.parentNode.classList.toggle('done');
     console.log(`span element is clicked.`)
   }
-  // // checks if the parent node is li element
-  // else if(e.target.parentNode.tagName.toLowerCase() === 'li') {
-  //   e.target.parentNode.setAttribute('class', 'done');
-  //   console.log(`li child element is clicked.`)
-  // }
-  
-})
+});
 
   
 // If a delete link is clicked, delete the li element / remove from the DOM
@@ -32,7 +24,7 @@ todayList.addEventListener('click', (e) => {
     todayList.removeChild(e.target.parentNode);
     console.log(`delete link was clicked.`);
   }
-})
+});
 
 
 // If an 'Add' link is clicked, adds the item as a new list item with
@@ -83,13 +75,30 @@ const addListItem = function(e) {
   todayList.appendChild(newListNode);
 
   // clear input textbox
-  text = '';
+  input.value = '';
 };
 
-// event listener for the add button
+
+// add item
 const addButton = document.querySelector('.add-item');
 addButton.addEventListener('click', addListItem);
 
 
 // extra credit: move list nodes up and down
+todayList.addEventListener('click', (e) => {
+  let currentListNode = e.target.parentNode;
+  let previousListNode = e.target.parentNode.previousElementSibling;
+  let nextListNode = e.target.parentNode.nextElementSibling;
 
+  // up button
+  if(e.target.classList.contains('up') && previousListNode != null) {
+    todayList.insertBefore(currentListNode, previousListNode);
+    console.log(`up link was clicked.`);
+  }
+
+  // down button
+  if(e.target.classList.contains('down') && nextListNode != null) {
+    todayList.insertBefore(currentListNode, nextListNode.nextElementSibling);
+    console.log(`down link was clicked.`);
+  }
+});
