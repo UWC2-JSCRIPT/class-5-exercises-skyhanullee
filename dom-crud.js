@@ -18,7 +18,8 @@ console.log(imgDataColor.getAttribute('data-color'));
 // set the class name to "highlight"
 const thirdLi = document.getElementsByTagName('li')[2];
 console.log(`The third li element is "${thirdLi.innerHTML}"`);
-thirdLi.textContent = 'highlight';
+// thirdLi.textContent = 'highlight';
+thirdLi.classList.add('highlight');
 
 
 // Remove (delete) the last paragraph

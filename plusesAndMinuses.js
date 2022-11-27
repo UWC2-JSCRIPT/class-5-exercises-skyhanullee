@@ -6,7 +6,7 @@ const plusEl = document.getElementById('plus');
 plusEl.addEventListener('click', (e) => {
     counter++;
     // console.log(counter);
-    document.getElementById('counter').innerHTML = counter;
+    document.getElementById('counter').textContent = counter;
 });
 
 
@@ -15,5 +15,5 @@ const minusEl = document.getElementById('minus');
 
 minusEl.addEventListener('click', (e) => {
     counter--;
-    document.getElementById('counter').innerHTML = counter;
+    document.getElementById('counter').textContent = counter;
 });

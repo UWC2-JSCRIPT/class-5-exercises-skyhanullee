@@ -19,4 +19,4 @@ const p = document.querySelector('p');
 // .children[1] -> ul
 // .children[2] -> third li
 const thirdLiFromP = p.parentNode.children[1].children[2];
-console.log(thirdLiFromP.innerHTML);
+console.log(thirdLiFromP);
